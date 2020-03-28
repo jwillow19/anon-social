@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://jwillow:<password>@digitalocean-bdhbb.mongodb.net/test?retryWrites=true&w=majority"
+}
