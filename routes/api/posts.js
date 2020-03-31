@@ -166,7 +166,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
       return res.status(400).json({ msg: 'Did not like post yet' });
     }
 
-    // if post is liked - can unlike by getting index and splice
+    // if post is liked - can unlike by finding liked-user index and splice
     const ind = post.likes.findIndex(like => {
       return like.user.toString() == req.user.id;
     });
