@@ -1,6 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const app = express();
+const cors = require('cors');
 
 // [*] Conenct DB from config
 connectDB();
@@ -8,6 +9,7 @@ connectDB();
 // [*] Init Parser Middleware
 // express.json - parses incoming requests with JSON payloads and is based on   body-parser.
 app.use(express.json({ extended: false }));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 app.get('/', (req, res) => {
   res.send('API Running');
