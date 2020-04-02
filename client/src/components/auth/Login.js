@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 export const Login = () => {
   // [*]  Declaring form state and function to be used for state update

@@ -1,10 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+
+// [*] Connect Register component to Redux 'setAlert action'
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+
 // Axisos - promise based HTTP client for the browser and node.js
 // async await
-import axios from 'axios';
+// import axios from 'axios';
 
-export const Register = () => {
+export const Register = props => {
   // [*]  Declaring form state and function to be used for state update
   const [formData, setFormData] = useState({
     name: '',
@@ -25,9 +30,9 @@ export const Register = () => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      console.log('unmatch');
+      await props.setAlert('unmatch', 'bad');
     } else {
-      // [**] An example of how to create newUser and store data to DB
+      // [*] An example of how to create newUser and store data to DB
       //    By convention it is better to do this with redux
       // const newUser = {
       //   name,
@@ -161,4 +166,5 @@ export const Register = () => {
   );
 };
 
-export default Register;
+// connect(state, obj with action )
+export default connect(null, { setAlert })(Register);
