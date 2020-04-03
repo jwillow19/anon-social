@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import Home from './components/layout/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Alert from './components/layout/Alert';
 // Redux
 import { Provider } from 'react-redux'; // Provider connects react <-> redux
 import store from './store'; // bring in redux store
@@ -20,6 +21,7 @@ const App = () => (
         <Route exact path='/' component={Home} />
 
         <section className='container'>
+          <Alert />
           <Switch>
             <Route exact path='/login' component={Login} />
             <Route exact path='/register' component={Register} />

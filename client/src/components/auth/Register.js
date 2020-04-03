@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 // [*] Connect Register component to Redux 'setAlert action'
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
@@ -9,7 +9,7 @@ import { setAlert } from '../../actions/alert';
 // async await
 // import axios from 'axios';
 
-export const Register = props => {
+export const Register = ({ setAlert }) => {
   // [*]  Declaring form state and function to be used for state update
   const [formData, setFormData] = useState({
     name: '',
@@ -30,7 +30,7 @@ export const Register = props => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      await props.setAlert('unmatch', 'bad');
+      setAlert('Paasword unmatch', 'danger');
     } else {
       // [*] An example of how to create newUser and store data to DB
       //    By convention it is better to do this with redux
@@ -166,5 +166,9 @@ export const Register = props => {
   );
 };
 
+// Setting PropTypes
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
+};
 // connect(state, obj with action )
 export default connect(null, { setAlert })(Register);
