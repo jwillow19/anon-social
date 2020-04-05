@@ -27,8 +27,8 @@ router.post(
   '/',
   [
     // check for email and password field when login
-    check('password', 'Password is reqired to login').exists(),
-    check('email', 'Email is required').isEmail()
+    check('email', 'Email is required').isEmail(),
+    check('password', 'Password is reqired to login').exists()
   ],
   async (req, res) => {
     const errors = validationResult(req);

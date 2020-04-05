@@ -2,7 +2,10 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_LOADED,
-  AUTH_ERR
+  AUTH_ERR,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT
 } from '../actions/types';
 import { setAlert } from './alert';
 import axios from 'axios';
@@ -25,10 +28,13 @@ export const register = ({ name, email, password }) => async dispatch => {
       body,
       config
     );
+
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data
     });
+
+    dispatch(loadUser());
   } catch (exception) {
     // catch errors(array) from backend to dispatch alerts
     const errors = exception.response.data.errors;
@@ -41,7 +47,7 @@ export const register = ({ name, email, password }) => async dispatch => {
   }
 };
 
-// Action - Load user by checking if theres a token in header
+// [*] Action - Load user by checking if theres a token in header
 export const loadUser = () => async dispatch => {
   // save token to header if theres a token in localStorage
   if (localStorage.token) {
@@ -60,4 +66,47 @@ export const loadUser = () => async dispatch => {
       type: AUTH_ERR
     });
   }
+};
+
+// [*] Action - Login user to DB - function INPUT( obj{ email, password} )
+export const login = ({ email, password }) => async dispatch => {
+  // Pepare header, json body content to be sent
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  const body = JSON.stringify({ email, password });
+
+  try {
+    // Send post request to auth api - diaptch reigster_success
+    const res = await axios.post(
+      'http://localhost:5000/api/auth',
+      body,
+      config
+    );
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    });
+
+    dispatch(loadUser());
+  } catch (exception) {
+    // catch errors(array) from backend to dispatch alerts
+    const errors = exception.response.data.errors;
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: LOGIN_FAIL
+    });
+  }
+};
+
+// [*] Action - logout user
+export const logout = () => dispatch => {
+  dispatch({
+    type: LOGOUT
+  });
 };

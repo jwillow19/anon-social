@@ -1,8 +1,11 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
   USER_LOADED,
-  AUTH_ERR
+  AUTH_ERR,
+  LOGOUT
 } from '../actions/types';
 
 const initialState = {
@@ -21,7 +24,8 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case REGISTER_SUCCESS:
-      // On success - log user in, set token to JWT
+    case LOGIN_SUCCESS:
+      // On register success - log user in, set token to JWT
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -30,7 +34,9 @@ export default function(state = initialState, action) {
         loading: false
       };
     case REGISTER_FAIL:
+    case LOGIN_FAIL:
     case AUTH_ERR:
+    case LOGOUT:
       // On failure -
       localStorage.removeItem('token');
       return {

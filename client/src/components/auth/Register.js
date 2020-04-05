@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // [*] Connect Register component to Redux 'setAlert action'
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
-export const Register = ({ setAlert, register }) => {
+export const Register = ({ setAlert, register, isAuth }) => {
   // [*]  Declaring form state and function to be used for state update
   const [formData, setFormData] = useState({
     name: '',
@@ -21,7 +21,7 @@ export const Register = ({ setAlert, register }) => {
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // [*] create onSubmit function
+  // [*] onSubmit function
   //  frontend - verify client credientials: matching password
   //  backend - use Axios to make POST request to /api/user for register
   const onSubmit = async e => {
@@ -32,6 +32,11 @@ export const Register = ({ setAlert, register }) => {
       register({ name, email, password });
     }
   };
+
+  // [*] Redirect user to feed if isAuth = true (logged in)
+  if (isAuth) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -136,7 +141,14 @@ export const Register = ({ setAlert, register }) => {
 // Adding Reigster component props
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool
 };
+
+const mapStateToProps = state => ({
+  // map auth state isAuthenticate to a component prop
+  isAuth: state.auth.isAuthenticated
+});
+
 // connect(state, obj with action )
-export default connect(null, { setAlert, register })(Register);
+export default connect(mapStateToProps, { setAlert, register })(Register);

@@ -1,27 +1,33 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { login } from '../../actions/auth';
 
-export const Login = () => {
-  // [*]  Declaring form state and function to be used for state update
+export const Login = ({ login, isAuth }) => {
+  // [*]  React State Hook - Declare form state and function to be used for state update (form update)
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-
   // destructure formData for convenience
   const { email, password } = formData;
+
   // [*]  declare onChange function to update state
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-  // [*] create onSubmit function
+  // [*] onSubmit function
   //  frontend - verify client credientials: email & password
   const onSubmit = async e => {
     e.preventDefault();
-    // if correct email/password - login to see feed
-    console.log(formData);
+    login({ email, password });
   };
+
+  // [*] Redirect user to feed if isAuth = true (logged in)
+  if (isAuth) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -90,4 +96,15 @@ export const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  // define custom props
+  login: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  // map auth state isAuthenticate to a component prop
+  isAuth: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);
