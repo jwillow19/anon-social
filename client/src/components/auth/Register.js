@@ -1,15 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 // [*] Connect Register component to Redux 'setAlert action'
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 
-// Axisos - promise based HTTP client for the browser and node.js
-// async await
-// import axios from 'axios';
-
-export const Register = props => {
+export const Register = ({ setAlert, register }) => {
   // [*]  Declaring form state and function to be used for state update
   const [formData, setFormData] = useState({
     name: '',
@@ -30,39 +27,9 @@ export const Register = props => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      await props.setAlert('unmatch', 'bad');
+      setAlert('Password unmatch', 'danger');
     } else {
-      // [*] An example of how to create newUser and store data to DB
-      //    By convention it is better to do this with redux
-      // const newUser = {
-      //   name,
-      //   email,
-      //   password
-      // };
-      // try {
-      //   // set header, json body content
-      //   const config = {
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     }
-      //   };
-      //   const body = JSON.stringify(newUser);
-      //   // send post request to /api/user to register
-      //   // const res = await axios({
-      //   //   method: 'post',
-      //   //   url: '/api/users',
-      //   //   data: body,
-      //   //   config
-      //   // });
-      //   const res = await axios.post(
-      //     'http://localhost:5000/api/users',
-      //     body,
-      //     config
-      //   );
-      //   console.log(res.data);
-      // } catch (exception) {
-      //   console.error(exception.response.data);
-      // }
+      register({ name, email, password });
     }
   };
 
@@ -91,7 +58,7 @@ export const Register = props => {
                       value={name}
                       // update input value by calling JS onChange function
                       onChange={e => onChange(e)}
-                      required
+                      // required
                       placeholder='Choose a username'
                     />
                   </div>
@@ -104,7 +71,7 @@ export const Register = props => {
                       value={email}
                       // update input value by calling JS onChange function
                       onChange={e => onChange(e)}
-                      required
+                      // required
                       placeholder='Email address'
                     />
                   </div>
@@ -117,7 +84,7 @@ export const Register = props => {
                       value={password}
                       // update input value by calling JS onChange function
                       onChange={e => onChange(e)}
-                      required
+                      // required
                       placeholder='Password'
                     />
                   </div>
@@ -131,7 +98,7 @@ export const Register = props => {
                       value={password2}
                       // update input value by calling JS onChange function
                       onChange={e => onChange(e)}
-                      required
+                      // required
                       placeholder='Confirm password'
                     />
                   </div>
@@ -166,5 +133,10 @@ export const Register = props => {
   );
 };
 
+// Adding Reigster component props
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
+};
 // connect(state, obj with action )
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

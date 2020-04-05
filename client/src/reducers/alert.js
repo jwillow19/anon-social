@@ -12,7 +12,7 @@ export default function(state = initialState, action) {
     // return previous state with newly added alert
     case SET_ALERT:
       return [...state, payload];
-    // Remove specific alert by id from state array and return rest
+    // Remove specific alert by id from state array
     case REMOVE_ALERT:
       return state.filter(alert => alert.id !== payload);
     // default state

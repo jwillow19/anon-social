@@ -19,6 +19,7 @@ export const Login = () => {
   //  frontend - verify client credientials: email & password
   const onSubmit = async e => {
     e.preventDefault();
+    // if correct email/password - login to see feed
     console.log(formData);
   };
 
