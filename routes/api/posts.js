@@ -134,7 +134,7 @@ router.put('/like/:id', auth, async (req, res) => {
       return res.status(400).json({ msg: 'Already liked post' });
     }
 
-    // first time liking post
+    // case: first time liking post
     post.likes.unshift({ user: req.user.id });
     await post.save();
     res.json(post.likes);
@@ -145,7 +145,7 @@ router.put('/like/:id', auth, async (req, res) => {
 });
 
 // @router  PUT api/posts/unlike/:id
-// @desc    like a post
+// @desc    unlike a post
 // @access  Private
 
 router.put('/unlike/:id', auth, async (req, res) => {
@@ -157,8 +157,10 @@ router.put('/unlike/:id', auth, async (req, res) => {
       return res.status(404).json({ msg: 'Post not found' });
     }
 
-    // if user.id not in any likes.user
-    if (
+    if (post.likes.length == 0) {
+      return res.status(400).json({ msg: 'Did not like post yet' });
+    } else if (
+      // if user.id not in any likes.user
       post.likes.some(like => {
         return req.user.id !== like.user.toString();
       })

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import { loadUser } from '../../actions/auth';
 import RenderPost from './RenderPost';
+import SubmitPost from './SubmitPost';
 
 const Posts = ({ getPosts, post }) => {
   const { posts, loading } = post;
@@ -16,9 +17,9 @@ const Posts = ({ getPosts, post }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Posts</h1>
-
-      {/* Post item - loop through each post from posts array and display */}
+      <h1 className='large text-primary'>Fix post page</h1>
+      <SubmitPost />
+      {/* Render individual post */}
       <div className='posts'>
         Here we go
         {posts.map(post => (
