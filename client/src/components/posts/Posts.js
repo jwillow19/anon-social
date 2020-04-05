@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post';
 import { loadUser } from '../../actions/auth';
+import RenderPost from './RenderPost';
 
 const Posts = ({ getPosts, post }) => {
   const { posts, loading } = post;
@@ -12,22 +13,6 @@ const Posts = ({ getPosts, post }) => {
   useEffect(() => {
     getPosts();
   }, [getPosts]);
-
-  // [*] Component take post object and render post in a <div>
-  function RenderPost(prop) {
-    return (
-      <div className='contentWrapper'>
-        <div className='content'>
-          <div className='postHeader'>
-            <p>{prop.post.name}</p>
-            <p className='postCreated'> {prop.post.date} </p>
-          </div>
-
-          <p className='postContent'> {prop.post.postContent} </p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <Fragment>

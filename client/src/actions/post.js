@@ -13,11 +13,11 @@ export const getPosts = () => async dispatch => {
     });
   } catch (exception) {
     dispatch({
-      type: POST_ERR,
-      payload: {
-        msg: exception.response.statusText,
-        status: exception.response.status
-      }
+      type: POST_ERR
+      // payload: {
+      //   msg: exception.response.statusText,
+      //   status: exception.response.status
+      // }
     });
   }
 };

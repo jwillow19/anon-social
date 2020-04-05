@@ -80,7 +80,7 @@ router.get('/', auth, async (req, res) => {
     // find all posts sorted by most recent
     const posts = await Post.find()
       .sort({ date: 'desc' })
-      .select('name postContent likes dislikes comments date');
+      .select('name user postContent likes dislikes comments date');
     res.json(posts);
   } catch (exception) {
     console.error(exception.message);
@@ -97,7 +97,7 @@ router.get('/:id', auth, async (req, res) => {
     // find post by id
     const postId = req.params.id;
     const post = await Post.findById(postId).select(
-      'name postContent likes dislikes comments date'
+      'name user postContent likes dislikes comments date'
     );
 
     // case: no postid - post not found
