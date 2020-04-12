@@ -1,5 +1,3 @@
-# anon-social
-
 # Secret Share
 
 An social media web app that lets you share your thoughts anonymously
