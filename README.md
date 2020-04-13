@@ -44,6 +44,7 @@ Go to ```config/default.json``` to change
 ```
 ### [3.] (Optional) Replace hosting address
 Default port for server is http://localhost:5000
+
 Default port for client is http://localhost:3000
 
 To change port for client, go to package.json in root dir and replace NEW_PORT
