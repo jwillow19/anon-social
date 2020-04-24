@@ -29,7 +29,7 @@ const App = () => {
   }, []);
 
   return (
-    // wrap everything in Provider to enable components with access to app-lv-state
+    // wrap everything in Provider to enable components with access to app-level-state
     <Provider store={store}>
       <Router>
         <Fragment>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 const Alert = ({ alerts }) => {
   if (alerts !== null && alerts.length > 0) {
-    const alertComp = alerts.map(alert => (
+    const alertComp = alerts.map((alert) => (
       <div key={alert.id} className={`alert alert-${alert.alertType}`}>
         {alert.msg}
       </div>
@@ -16,13 +16,13 @@ const Alert = ({ alerts }) => {
 };
 
 Alert.propTypes = {
-  alerts: PropTypes.array.isRequired
+  alerts: PropTypes.array.isRequired,
 };
 
 // [*] Fetch redux state from reducer to props of alert component
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   // set property[alert] (props.alerts) to the state of the 'alert' reducer in rootreducer
-  alerts: state.alert
+  alerts: state.alert,
 });
 
 export default connect(mapStateToProps)(Alert);

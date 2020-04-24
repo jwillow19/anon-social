@@ -6,10 +6,18 @@
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
+html {
+  font-size: 62.5%;
+}
 body {
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
-  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  /* background-color: #000; */
+  /* display: flex; */
+  /* 
+  line-height: 1.6; */
   background-color: #fff;
   color: #333;
 }
@@ -26,88 +34,6 @@ body {
 }
 .content {
   padding: 12px;
-}
-
-.postTitle {
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 25px;
-  color: rgb(20, 20, 20);
-}
-.postContent {
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: rgb(20, 20, 20);
-}
-.postCreated {
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  color: rgb(20, 20, 20);
-}
-
-/* Pulse */
-@-webkit-keyframes hvr-pulse {
-  25% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  75% {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
-  }
-}
-@keyframes hvr-pulse {
-  25% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
-  75% {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
-  }
-}
-.hvr-pulse {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-}
-.hvr-pulse:hover,
-.hvr-pulse:focus,
-.hvr-pulse:active {
-  -webkit-animation-name: hvr-pulse;
-  animation-name: hvr-pulse;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
-/* ==============NavBar================*/
-.navbar-default {
-  margin: 15px;
-  padding: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-color: #444;
-  transition: all 1s;
-  top: 0;
-}
-.navbar-nav > li > a {
-  font-family: 'Press+Start+2P', sans-serif;
-  font-size: 18px;
-  padding-left: 55px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.navbar-nav > li > a:hover {
-  color: #129cf3;
-  transition: all 0.5s;
 }
 
 /* ============== Alert ==============*/

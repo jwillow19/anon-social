@@ -6,6 +6,7 @@ import { getPosts } from '../../actions/post';
 import { loadUser } from '../../actions/auth';
 import RenderPost from './RenderPost';
 import SubmitPost from './SubmitPost';
+import './post.styles.scss';
 
 const Posts = ({ getPosts, post }) => {
   const { posts, loading } = post;
@@ -17,12 +18,12 @@ const Posts = ({ getPosts, post }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Fix post page</h1>
       <SubmitPost />
       {/* Render individual post */}
-      <div className='posts'>
-        Here we go
-        {posts.map(post => (
+      <div className='heading-primary-sub'>
+        <h1 className='feed-title'>Oh boy, here we go</h1>
+
+        {posts.map((post) => (
           <RenderPost key={post._id} post={post} />
         ))}
       </div>
@@ -32,11 +33,11 @@ const Posts = ({ getPosts, post }) => {
 
 Posts.propTypes = {
   post: PropTypes.object.isRequired,
-  getPosts: PropTypes.func.isRequired
+  getPosts: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  post: state.post
+const mapStateToProps = (state) => ({
+  post: state.post,
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);

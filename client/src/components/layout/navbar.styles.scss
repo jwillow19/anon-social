@@ -1,0 +1,21 @@
+/* ==============NavBar================*/
+.navbar-default {
+  margin: 15px;
+  padding: 0;
+  background-color: #000000bc;
+  border-color: #444;
+  transition: all 1s;
+  top: 0;
+}
+.navbar-nav > li > a {
+  font-family: 'Press+Start+2P', sans-serif;
+  font-size: 18px;
+  padding-left: 55px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.navbar-nav > li > a:hover {
+  color: #129cf3;
+  transition: all 0.5s;
+}

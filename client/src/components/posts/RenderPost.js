@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { upvotePost, downvotePost, deletePost } from '../../actions/post';
+import './post.styles.scss';
 
 const RenderPost = ({ auth, post, upvotePost, downvotePost, deletePost }) => {
   const {
@@ -13,20 +14,20 @@ const RenderPost = ({ auth, post, upvotePost, downvotePost, deletePost }) => {
     likes,
     dislikes,
     comments,
-    date
+    date,
   } = post;
 
   return (
     <div className='contentWrapper'>
       <div className='content'>
+        <p className='heading-tertiary'>{name}</p>
         <div>
-          <p className='postContent'> {postContent} </p>
+          <p className='paragraph'> {postContent} </p>
         </div>
 
-        <p>{name}</p>
         <p className='postCreated'> {date} </p>
         <button
-          onClick={e => upvotePost(_id)}
+          onClick={(e) => upvotePost(_id)}
           type='button'
           className='btn btn-light'
         >
@@ -34,7 +35,7 @@ const RenderPost = ({ auth, post, upvotePost, downvotePost, deletePost }) => {
           <span>{likes.length}</span>
         </button>
         <button
-          onClick={e => downvotePost(_id)}
+          onClick={(e) => downvotePost(_id)}
           type='button'
           className='btn btn-light'
         >
@@ -46,7 +47,7 @@ const RenderPost = ({ auth, post, upvotePost, downvotePost, deletePost }) => {
         {/* if not loading and authenticated user == post user, user may delete */}
         {!auth.loading && auth.user._id === user && (
           <button
-            onClick={e => deletePost(_id)}
+            onClick={(e) => deletePost(_id)}
             type='button'
             className='btn btn-danger'
           >
@@ -63,16 +64,16 @@ RenderPost.propTypes = {
   post: PropTypes.object.isRequired,
   upvotePost: PropTypes.func.isRequired,
   downvotePost: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired
+  deletePost: PropTypes.func.isRequired,
 };
 
 // need auth state to grant remove-post access
-const mapSateToProps = state => ({
-  auth: state.auth
+const mapSateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapSateToProps, {
   upvotePost,
   downvotePost,
-  deletePost
+  deletePost,
 })(RenderPost);

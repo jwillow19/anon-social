@@ -5,7 +5,7 @@ import {
   LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERR,
-  LOGOUT
+  LOGOUT,
 } from '../actions/types';
 
 const initialState = {
@@ -16,10 +16,10 @@ const initialState = {
   // set to false once loaded
   loading: true,
   // set to user once authenticated
-  user: null
+  user: null,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -31,7 +31,7 @@ export default function(state = initialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
-        loading: false
+        loading: false,
       };
     case REGISTER_FAIL:
     case LOGIN_FAIL:
@@ -44,7 +44,7 @@ export default function(state = initialState, action) {
         ...state,
         token: null,
         isAuthenticated: false,
-        loading: false
+        loading: false,
       };
     case USER_LOADED:
       // Valid token - log user in
@@ -52,7 +52,7 @@ export default function(state = initialState, action) {
         ...state,
         user: payload,
         isAuthenticated: true,
-        loading: false
+        loading: false,
       };
     default:
       return state;

@@ -1,0 +1,162 @@
+.header {
+  /* height is always 95% viewport height */
+  height: 100vh;
+  /* add gradient on top of background image - can specify direction in which gradient changes*/
+  background-color: #000;
+  /* try to fit element inside viewport */
+  background-size: cover;
+  /* make image stay at the top of image as viewport changes  */
+  background-position: top;
+  /* coordinates of polygon clip shape */
+  // clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+  /* this is the reference origin for logo-box */
+  position: relative;
+
+  .logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    .logo {
+      height: 35px;
+    }
+  }
+
+  .text-box {
+    /* textbox is in relation to header element */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* align text property in box to center */
+    text-align: center;
+
+    .heading-primary {
+      color: #fff;
+      text-transform: uppercase;
+      /* add space between this and button */
+      //   margin: 0;
+      margin-bottom: 30px;
+      font-size: 5.5rem;
+      letter-spacing: 8px;
+
+      &:after,
+      &:before {
+        content: 'Anonymous Share';
+        position: absolute;
+        top: 0;
+        color: #fff;
+        background-color: #000;
+        overflow: hidden;
+      }
+      &:after {
+        left: 2px;
+        text-shadow: -1px 0 #ff1b1b;
+        animation: glitch1 3s infinite ease;
+      }
+
+      &:before {
+        left: -2px;
+        text-shadow: 1px 0 #2124ff;
+        animation: glitch2 3s infinite ease;
+      }
+
+      @keyframes glitch1 {
+        $steps: 6s;
+        @for $i from 0s through $steps {
+          #{percentage($i*(1/$steps))} {
+            $top: random(100);
+            $bottom: random(101 - $top);
+            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+          }
+        }
+      }
+      @keyframes glitch2 {
+        $steps: 2s;
+        @for $i from 0s through $steps {
+          #{percentage($i*(1/$steps))} {
+            $top: random(100);
+            $bottom: random(101 - $top);
+            clip-path: inset(#{$top}% 0 #{$bottom}% 0);
+          }
+        }
+      }
+
+      &-main {
+        /* display-block elements - occupy entire width and create linebreaks */
+        display: block;
+        font-size: 5rem;
+        font-weight: 400;
+        letter-spacing: 35px;
+        /* add animation style and duration */
+        animation-name: fadeIn;
+        animation-duration: 2s;
+      }
+      &-sub {
+        display: block;
+        font-size: 3rem;
+        font-weight: 280;
+        letter-spacing: 20px;
+        animation-name: fadeIn;
+        animation-duration: 2s;
+      }
+    }
+    .heading-secondary {
+      font-size: 3rem;
+      text-transform: uppercase;
+      font-weight: lighter;
+      letter-spacing: 6px;
+      //   background-image: linear-gradient(
+      //     to right bottom,
+      //     $color-primary-light-blue,
+      //     $color-primary-dark-blue
+      //   );
+      // color ends when text ends
+      display: block;
+      // clip background to text
+      //   -webkit-background-clip: text;
+      color: #fff;
+      // background-image: linear-gradient(
+      //   to-right,
+      //   $color-primary-light-blue,
+      //   $color-primary-dark-blue
+      // );
+      transition: all 0.2s;
+      //   &:hover {
+      //     transform: skewY(2deg);
+      //   }
+    }
+
+    .sign-in-login-btn {
+      margin: 2rem;
+      padding: 0.5rem 1rem;
+      font-size: 2.25rem;
+      line-height: 1.5;
+      border-radius: 0.3rem;
+      display: inline-block;
+      font-weight: 400;
+      text-decoration: none;
+      color: #fff;
+      text-align: center;
+      vertical-align: middle;
+      transition: all 0.2s;
+      &:link,
+      &:visited {
+        // text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        /* makes this an inline block element - treat this as text */
+        display: inline-block;
+        border-radius: 5rem;
+        transition: all 0.2s;
+        position: relative;
+        // font-size: $default-font-size;
+      }
+      &:hover {
+        transform: scale(1.2);
+      }
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}

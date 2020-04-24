@@ -3,61 +3,61 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
   },
   name: {
-    type: String
+    type: String,
   },
   postContent: {
     type: String,
-    required: true
+    required: true,
   },
   avatar: {
-    type: String
+    type: String,
   },
   // Likes/dislikes are a list of user objects
   likes: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    }
+        ref: 'User',
+      },
+    },
   ],
   dislikes: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-      }
-    }
+        ref: 'User',
+      },
+    },
   ],
   comments: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
       },
       commentContent: {
         type: String,
-        required: true
+        required: true,
       },
       name: {
-        type: String
+        type: String,
       },
       avatar: {
-        type: String
+        type: String,
       },
       date: {
         type: Date,
-        default: Date.now
-      }
-    }
+        default: Date.now,
+      },
+    },
   ],
   date: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const Post = mongoose.model('Post', postSchema);

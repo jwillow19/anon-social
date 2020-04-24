@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "client": "npm start --prefix client",
+    "client": "PORT=3000 npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "jwillow",
@@ -23,5 +23,8 @@
     "mongoose": "^5.9.6",
     "nodemon": "^2.0.2",
     "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.0"
   }
 }

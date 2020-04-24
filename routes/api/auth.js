@@ -28,7 +28,7 @@ router.post(
   [
     // check for email and password field when login
     check('email', 'Email is required').isEmail(),
-    check('password', 'Password is reqired to login').exists()
+    check('password', 'Password is reqired to login').exists(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -59,8 +59,8 @@ router.post(
       // [*] Send JWT after successful login - create payload, sign, and send token to user
       const payload = {
         user: {
-          id: user._id
-        }
+          id: user._id,
+        },
       };
       const secret = config.get('jwtSecret');
       jwt.sign(payload, secret, { expiresIn: '10hr' }, (err, token) => {
