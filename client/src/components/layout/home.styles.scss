@@ -41,7 +41,7 @@
 
       &:after,
       &:before {
-        content: 'Anonymous Share';
+        content: 'Chat Anon';
         position: absolute;
         top: 0;
         color: #fff;
@@ -51,7 +51,7 @@
       &:after {
         left: 2px;
         text-shadow: -1px 0 #ff1b1b;
-        animation: glitch1 3s infinite ease;
+        animation: glitch1 6s infinite ease;
       }
 
       &:before {
@@ -61,7 +61,7 @@
       }
 
       @keyframes glitch1 {
-        $steps: 6s;
+        $steps: 2s;
         @for $i from 0s through $steps {
           #{percentage($i*(1/$steps))} {
             $top: random(100);

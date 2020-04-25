@@ -7,7 +7,8 @@
   --success-color: #28a745;
 }
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
+  font-size: 75%;
 }
 body {
   font-family: 'Raleway', sans-serif;

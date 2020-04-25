@@ -12,6 +12,7 @@
   "author": "jwillow",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^4.9.11",
     "bcryptjs": "^2.4.3",
     "concurrently": "^5.1.0",
     "config": "^3.3.1",
@@ -22,7 +23,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
     "nodemon": "^2.0.2",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "node-sass": "^4.14.0"

@@ -13,3 +13,5 @@ export const GET_POSTS = 'GET_POSTS';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
 export const DELETE_POST = 'DELETE_POST';
 export const CREATE_POST = 'CREATE_POST';
+export const SEND_MSG = 'SEND_MSG';
+export const RECEIVE_MSG = 'RECEIVE_MSG';

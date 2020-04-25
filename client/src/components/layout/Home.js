@@ -8,8 +8,8 @@ const Home = () => {
     <div className='header'>
       <div className='text-box'>
         <h1 className='heading-primary'>
-          <span className='heading-primary'>Anonymous </span>
-          <span className='heading-secondary'>Share secrets anonymously</span>
+          <span className='heading-primary'> </span>
+          <span className='heading-secondary'>Anonymous Share</span>
         </h1>
         <Link className='sign-in-login-btn' to='/register' role='button'>
           Sign Up
