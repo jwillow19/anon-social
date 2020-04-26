@@ -135,7 +135,7 @@ const Dashboard = ({ allChats, getMsg, sendMsg }) => {
         <div className={classes.flex}>
           <TextField
             class={classes.chatBox}
-            label='Message'
+            // label='Message'
             defaultValue='say something...'
             fullWidth
             value={textValue}

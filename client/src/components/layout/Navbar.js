@@ -9,13 +9,18 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
   const authNav = (
     <Fragment>
       <ul className='navbar-nav mr-auto'>
-        <li className='nav-item'>
-          <Link className='nav-link' to='#/'>
-            Logo Here
+        {/*<li className='nav-item'>
+          <Link className='nav-link' to='/'>
+            Home
           </Link>
-        </li>
+  </li>*/}
       </ul>
       <ul className='navbar-nav navbar-right'>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/chat'>
+            Chat
+          </Link>
+        </li>
         <li className='nav-item'>
           <Link className='nav-link' to='/posts'>
             Posts
