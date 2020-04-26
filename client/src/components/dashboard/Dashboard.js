@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import { getMsg, sendMsg } from '../../actions/chat';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,11 +35,13 @@ const useStyles = makeStyles((theme) => ({
     width: '30%',
     height: '70vh',
     borderRight: '1px solid grey',
+    backgroundColor: 'rgba(51, 51, 51)',
   },
   chatWindow: {
     width: '70%',
     height: '70vh',
     padding: '2rem',
+    backgroundColor: 'rgb(235, 229, 229)',
   },
   chatBox: {
     width: '80%',
@@ -47,9 +50,17 @@ const useStyles = makeStyles((theme) => ({
   chatButton: {
     width: '20%',
   },
+  chipLabel: {
+    backgroundColor: '#6B86F3',
+    margin: '0.5rem',
+  },
+  channel: {
+    color: 'rgb(226, 218, 218)',
+    padding: '1rem',
+  },
 }));
 
-const Dashboard = ({ allChats }) => {
+const Dashboard = ({ allChats, getMsg, sendMsg }) => {
   const classes = useStyles();
   // get all topics from store
   //  NOTE - topics is a list of str, need to use template literals
@@ -65,9 +76,11 @@ const Dashboard = ({ allChats }) => {
     setTopic(e.target.innerText);
   };
 
-  // const handleClick = () => {};
-
-  // const handleDelete = () => {};
+  const handleMsgSubmit = () => {
+    sendMsg({ msg: textValue, channel: activeTopic });
+    updateTextState('');
+  };
+  // onClick={() => removeItem(cartItem)}
 
   return (
     <div>
@@ -76,7 +89,7 @@ const Dashboard = ({ allChats }) => {
           Chat Dashboard
         </Typography>
         <Typography variant='h5' component='h5'>
-          {activeTopic}
+          {'#' + activeTopic}
         </Typography>
 
         <div className={classes.flex}>
@@ -85,6 +98,7 @@ const Dashboard = ({ allChats }) => {
               {/* Goal: Map over a lilst of chat objects to a chip component */}
               {topics.map((topic) => (
                 <ListItem
+                  class={classes.channel}
                   key={topic}
                   button
                   onClick={(e) => handleTopicClick(e)}
@@ -101,11 +115,17 @@ const Dashboard = ({ allChats }) => {
               <div key={index} className={classes.flex}>
                 <Chip
                   // icon={<FaceIcon />}
-                  label={chat.from}
+                  class={classes.chipLabel}
+                  label={chat.sentFrom}
                   // onClick={handleClick}
                   // onDelete={handleDelete}
                 />
                 <Typography variant='body1'>{chat.msg}</Typography>
+                {/* DELETE BUTTON - features goes here if ever decide to implement 
+                <div>
+                  <span className='remove-button'>&#10005;</span>
+                </div>
+              */}
               </div>
             ))}
           </div>
@@ -126,6 +146,8 @@ const Dashboard = ({ allChats }) => {
             variant='contained'
             color='primary'
             className={classes.chatButton}
+            // onClick send text object indicating the msg-content and channel
+            onClick={() => handleMsgSubmit()}
           >
             Send
           </Button>
@@ -135,10 +157,13 @@ const Dashboard = ({ allChats }) => {
   );
 };
 
-Dashboard.propTypes = {};
+Dashboard.propTypes = {
+  getMsg: PropTypes.func.isRequired,
+  sendMsg: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   allChats: state.chat,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { getMsg, sendMsg })(Dashboard);

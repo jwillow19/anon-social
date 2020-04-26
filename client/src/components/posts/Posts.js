@@ -9,7 +9,7 @@ import SubmitPost from './SubmitPost';
 import './post.styles.scss';
 
 const Posts = ({ getPosts, post }) => {
-  const { posts, loading } = post;
+  const { posts } = post;
 
   // useEffect - React Hook it tells React that your component needs to do something after render. Here the effect is the getPost action, which fetch posts from api to state
   useEffect(() => {
