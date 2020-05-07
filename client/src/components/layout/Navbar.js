@@ -41,7 +41,7 @@ const Navbar = ({ logout, auth: { isAuthenticated, loading } }) => {
       <ul className='navbar-nav mr-auto'>
         <li className='nav-item'>
           <Link className='nav-link' to='/'>
-            Logo Here
+            Chat-Anon
           </Link>
         </li>
       </ul>
