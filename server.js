@@ -10,8 +10,10 @@ connectDB();
 // [*] Init Parser Middleware
 // express.json - parses incoming requests with JSON payloads and is based on   body-parser.
 app.use(express.json({ extended: false }));
+
 // fixed CORS error
-app.use(cors({ origin: 'http://localhost:3000' }));
+// app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors());
 
 // app.get('/', (req, res) => {
 //   res.send('API Running');

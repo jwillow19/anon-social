@@ -36,7 +36,7 @@ export const Register = ({ setAlert, register, isAuth }) => {
 
   // [*] Redirect user to feed if isAuth = true (logged in)
   if (isAuth) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/chat' />;
   }
 
   return (
