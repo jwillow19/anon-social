@@ -23,11 +23,10 @@
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.6",
-    "nodemon": "^2.0.2",
-    "request": "^2.88.2",
-    "socket.io": "^2.3.0"
+    "request": "^2.88.2"
   },
   "devDependencies": {
-    "node-sass": "^4.14.0"
+    "node-sass": "^4.14.0",
+    "nodemon": "^2.0.2"
   }
 }
