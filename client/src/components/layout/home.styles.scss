@@ -61,7 +61,7 @@
       }
 
       @keyframes glitch1 {
-        $steps: 2s;
+        $steps: 5s;
         @for $i from 0s through $steps {
           #{percentage($i*(1/$steps))} {
             $top: random(100);
@@ -71,7 +71,7 @@
         }
       }
       @keyframes glitch2 {
-        $steps: 2s;
+        $steps: 6s;
         @for $i from 0s through $steps {
           #{percentage($i*(1/$steps))} {
             $top: random(100);
