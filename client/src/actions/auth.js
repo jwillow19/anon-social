@@ -23,11 +23,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
   try {
     // Successful post request - diaptch reigster_success
-    const res = await axios.post(
-      'http://localhost:5000/api/users',
-      body,
-      config
-    );
+    const res = await axios.post('/api/users', body, config);
 
     dispatch({
       type: REGISTER_SUCCESS,
@@ -55,7 +51,7 @@ export const loadUser = () => async (dispatch) => {
   }
   try {
     // auth middleware from backend will validate token in header
-    const res = await axios.get('http://localhost:5000/api/auth');
+    const res = await axios.get('/api/auth');
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -80,11 +76,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 
   try {
     // Send post request to auth api - diaptch reigster_success
-    const res = await axios.post(
-      'http://localhost:5000/api/auth',
-      body,
-      config
-    );
+    const res = await axios.post('/api/auth', body, config);
 
     dispatch({
       type: LOGIN_SUCCESS,
