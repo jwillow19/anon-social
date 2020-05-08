@@ -47,13 +47,13 @@ router.post(
 // @router  GET api/posts
 // @desc    Get all chats
 // @access  Private
-
-router.get('/:channel', auth, async (req, res) => {
+router.post('/channel', auth, async (req, res) => {
   try {
-    // find all chat sorted by most recent
-    const chats = await Chat.find({ channel: req.params.channel })
+    const param = await req.body.channel;
+    const chats = await Chat.find({ channel: param })
       .sort({ date: 'asc' })
       .select('name user msg channel date');
+
     res.json(chats);
   } catch (exception) {
     console.error(exception.message);

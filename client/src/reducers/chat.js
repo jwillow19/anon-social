@@ -2,29 +2,10 @@ import { SEND_MSG, RECEIVE_MSG } from '../actions/types';
 
 const initialState = {
   general: [
-    { sentFrom: 'dev', msg: 'welcome to generals' },
-    { sentFrom: 'dev', msg: 'every 60seconds a minute past' },
-    { sentFrom: 'dev', msg: 'bob spelled backwards is bob' },
-    { sentFrom: 'dev', msg: 'dog spelled backwards is god' },
+    { name: 'dev', msg: 'Welcome! Choose a channel on the left to start' },
   ],
-  secrets: [
-    { sentFrom: 'dev', msg: 'Share your secrets to your hearts content!' },
-    {
-      sentFrom: 'dev',
-      msg: 'I tell my friends Im busy but I just wanted to stay at home',
-    },
-  ],
-  questions: [
-    {
-      sentFrom: 'dev',
-      msg: 'ask away, there is no such thing as stupid questions here',
-    },
-    {
-      sentFrom: 'dev',
-      msg:
-        'You have a button which, when you press it, does something. What does yours do?',
-    },
-  ],
+  secrets: [],
+  questions: [],
 };
 
 export default function (state = initialState, action) {
@@ -66,7 +47,7 @@ export default function (state = initialState, action) {
         //     msg: payload.msg,
         //   },
         // ],
-        [payload.channel]: payload,
+        [payload[0].channel]: payload,
       };
 
     default:

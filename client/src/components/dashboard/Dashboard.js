@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
@@ -70,17 +70,16 @@ const Dashboard = ({ allChats, getMsg, sendMsg }) => {
   const [textValue, updateTextState] = useState('');
   const [activeTopic, setTopic] = useState(topics[0]);
 
-  // handlers
   const handleTopicClick = (e) => {
     // e.preventDefault();
     setTopic(e.target.innerText);
+    getMsg({ channel: e.target.innerText });
   };
 
   const handleMsgSubmit = () => {
     sendMsg({ msg: textValue, channel: activeTopic });
     updateTextState('');
   };
-  // onClick={() => removeItem(cartItem)}
 
   return (
     <div>
@@ -116,7 +115,7 @@ const Dashboard = ({ allChats, getMsg, sendMsg }) => {
                 <Chip
                   // icon={<FaceIcon />}
                   class={classes.chipLabel}
-                  label={chat.sentFrom}
+                  label={chat.name}
                   // onClick={handleClick}
                   // onDelete={handleDelete}
                 />
